@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36310.24 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoopCash.Api", "CoopCash.Api\CoopCash.Api.csproj", "{3B5AD456-9711-4722-880E-9A25BB8F3FF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoopCash.Domain", "CoopCash.Domain\CoopCash.Domain.csproj", "{29A57E4D-3BC7-4D53-9B01-152D573397B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoopCash.App", "CoopCash.App\CoopCash.App.csproj", "{A2558E7A-2BD9-4A2C-BD84-E2CFE502B9C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoopCash.Infra", "CoopCash.Infra\CoopCash.Infra.csproj", "{77A9FDE6-3B9C-479D-BE69-9E44FB739CD4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B5AD456-9711-4722-880E-9A25BB8F3FF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B5AD456-9711-4722-880E-9A25BB8F3FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B5AD456-9711-4722-880E-9A25BB8F3FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B5AD456-9711-4722-880E-9A25BB8F3FF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29A57E4D-3BC7-4D53-9B01-152D573397B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29A57E4D-3BC7-4D53-9B01-152D573397B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29A57E4D-3BC7-4D53-9B01-152D573397B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29A57E4D-3BC7-4D53-9B01-152D573397B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2558E7A-2BD9-4A2C-BD84-E2CFE502B9C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2558E7A-2BD9-4A2C-BD84-E2CFE502B9C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2558E7A-2BD9-4A2C-BD84-E2CFE502B9C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2558E7A-2BD9-4A2C-BD84-E2CFE502B9C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77A9FDE6-3B9C-479D-BE69-9E44FB739CD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77A9FDE6-3B9C-479D-BE69-9E44FB739CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77A9FDE6-3B9C-479D-BE69-9E44FB739CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77A9FDE6-3B9C-479D-BE69-9E44FB739CD4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {804A1014-3707-48EF-A0C3-F714DA49AA6F}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,11 @@
+D:\Git\Repos_CoopCash\sistemas\Api\CoopCash\CoopCash.Domain\bin\Debug\net8.0\CoopCash.Domain.deps.json
+D:\Git\Repos_CoopCash\sistemas\Api\CoopCash\CoopCash.Domain\bin\Debug\net8.0\CoopCash.Domain.dll
+D:\Git\Repos_CoopCash\sistemas\Api\CoopCash\CoopCash.Domain\bin\Debug\net8.0\CoopCash.Domain.pdb
+D:\Git\Repos_CoopCash\sistemas\Api\CoopCash\CoopCash.Domain\obj\Debug\net8.0\CoopCash.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Git\Repos_CoopCash\sistemas\Api\CoopCash\CoopCash.Domain\obj\Debug\net8.0\CoopCash.Domain.AssemblyInfoInputs.cache
+D:\Git\Repos_CoopCash\sistemas\Api\CoopCash\CoopCash.Domain\obj\Debug\net8.0\CoopCash.Domain.AssemblyInfo.cs
+D:\Git\Repos_CoopCash\sistemas\Api\CoopCash\CoopCash.Domain\obj\Debug\net8.0\CoopCash.Domain.csproj.CoreCompileInputs.cache
+D:\Git\Repos_CoopCash\sistemas\Api\CoopCash\CoopCash.Domain\obj\Debug\net8.0\CoopCash.Domain.dll
+D:\Git\Repos_CoopCash\sistemas\Api\CoopCash\CoopCash.Domain\obj\Debug\net8.0\refint\CoopCash.Domain.dll
+D:\Git\Repos_CoopCash\sistemas\Api\CoopCash\CoopCash.Domain\obj\Debug\net8.0\CoopCash.Domain.pdb
+D:\Git\Repos_CoopCash\sistemas\Api\CoopCash\CoopCash.Domain\obj\Debug\net8.0\ref\CoopCash.Domain.dll

@@ -1,0 +1,6 @@
+@CoopCash.Api_HostAddress = http://localhost:5103
+
+GET {{CoopCash.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
