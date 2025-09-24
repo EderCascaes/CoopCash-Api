@@ -37,6 +37,57 @@ namespace CoopCash.Infra.Migrations
                     b.ToTable("AssociateCardMachines", (string)null);
                 });
 
+            modelBuilder.Entity("CoopCash.Domain.Entities.Address", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AssociateId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Complement")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Neighborhood")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssociateId")
+                        .IsUnique();
+
+                    b.ToTable("Address");
+                });
+
             modelBuilder.Entity("CoopCash.Domain.Entities.Associate", b =>
                 {
                     b.Property<Guid>("Id")
@@ -44,10 +95,6 @@ namespace CoopCash.Infra.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Account")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Agency")
@@ -130,10 +177,6 @@ namespace CoopCash.Infra.Migrations
 
                     b.Property<decimal>("TotalGenerated")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Whatsapp")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("YourDiscount")
                         .HasColumnType("decimal(18,2)");
@@ -334,6 +377,40 @@ namespace CoopCash.Infra.Migrations
                     b.ToTable("Companies");
                 });
 
+            modelBuilder.Entity("CoopCash.Domain.Entities.InviteToken", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ContractNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime>("Expiration")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Used")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("InviteToken");
+                });
+
             modelBuilder.Entity("CoopCash.Domain.Entities.Invoice", b =>
                 {
                     b.Property<Guid>("Id")
@@ -436,7 +513,7 @@ namespace CoopCash.Infra.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -455,6 +532,9 @@ namespace CoopCash.Infra.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("User");
                 });
 
@@ -471,6 +551,17 @@ namespace CoopCash.Infra.Migrations
                         .HasForeignKey("LinkedMachinesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CoopCash.Domain.Entities.Address", b =>
+                {
+                    b.HasOne("CoopCash.Domain.Entities.Associate", "Associate")
+                        .WithOne("Address")
+                        .HasForeignKey("CoopCash.Domain.Entities.Address", "AssociateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Associate");
                 });
 
             modelBuilder.Entity("CoopCash.Domain.Entities.AssociateCard", b =>
@@ -506,6 +597,9 @@ namespace CoopCash.Infra.Migrations
 
             modelBuilder.Entity("CoopCash.Domain.Entities.Associate", b =>
                 {
+                    b.Navigation("Address")
+                        .IsRequired();
+
                     b.Navigation("Cards");
 
                     b.Navigation("Invoices");

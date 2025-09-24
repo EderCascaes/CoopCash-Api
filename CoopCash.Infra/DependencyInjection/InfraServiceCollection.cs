@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CoopCash.App.Interfaces.Repositories;
 using CoopCash.App.Interfaces.Services;
 using CoopCash.App.Services;
 using CoopCash.Infra.Persistence.Context;
@@ -20,13 +16,17 @@ namespace CoopCash.Infra.DependencyInjection
             this IServiceCollection services,
             IConfiguration configuration)
         {
-            // 🔹 Exemplo: Configuração do DbContext com SQL Server
             services.AddDbContext<CoopCashDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             // 🔹 Repositórios (Genérico + Específicos)
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IRepositoryAuth, RepositoryAuth>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IJwtService, JwtService>();
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IInviteEmailService, InviteEmailService>();
+            services.AddScoped<IAssociateService, AssociateService>();
 
             return services;
         }

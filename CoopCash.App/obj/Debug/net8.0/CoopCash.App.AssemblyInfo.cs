@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CoopCash.App")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3f34f7943ab6f29da43f1b2baea87de39610a607")]
 [assembly: System.Reflection.AssemblyProductAttribute("CoopCash.App")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CoopCash.App")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,5 +1,7 @@
-﻿using CoopCash.Infra.Persistence.Context;
+﻿using CoopCash.App.Interfaces.Repositories;
+using CoopCash.Infra.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace CoopCash.Infra.Persistence.Repositories
 {
@@ -24,9 +26,17 @@ namespace CoopCash.Infra.Persistence.Repositories
             return await _dbSet.ToListAsync();
         }
 
-        public async Task InsertAsync(T entity)
+        public async Task<T> InsertAsync(T entity)
         {
             await _dbSet.AddAsync(entity);
+            await _context.SaveChangesAsync();
+            return entity;
+        }
+
+        public async Task<T> InsertInTransactionAsync(T entity)
+        {
+            await _dbSet.AddAsync(entity);
+            return entity;
         }
 
         public async Task UpdateAsync(T entity)
@@ -46,6 +56,11 @@ namespace CoopCash.Infra.Persistence.Repositories
         public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<IDbContextTransaction> BeginTransactionAsync()
+        {
+            return await _context.Database.BeginTransactionAsync();
         }
     }
 }

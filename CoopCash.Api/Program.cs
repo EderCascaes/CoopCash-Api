@@ -1,18 +1,22 @@
 using System.Text;
 using CoopCash.Api.Middlewares;
-using CoopCash.Infra.Persistence.Context;
+using CoopCash.App.Interfaces.Services;
+using CoopCash.App.Services;
+using CoopCash.Infra.Configurations;
+using CoopCash.Infra.DependencyInjection;
 using CoopCash.Infra.Security;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Config SMTP
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
+
+// Serviços
 builder.Services.AddControllers();
-
 builder.Services.AddSingleton<JwtService>();
+builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
@@ -28,43 +32,44 @@ builder.Services.AddAuthentication("Bearer")
         };
     });
 
-builder.Services.AddDbContext<CoopCashDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
 builder.Services.AddAuthorization();
 
-// Adiciona Swagger
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "CoopCash.Api",
-        Version = "v1"
-    });
-});
+builder.Services.AddSwaggerGen();
 
+// CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy => policy
+            .WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment()) 
+// Pipeline
+if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "CoopCash.Api v1");
-        c.RoutePrefix = string.Empty; 
+        c.RoutePrefix = string.Empty;
     });
 }
 
-// Configure the HTTP request pipeline.
-
 app.UseHttpsRedirection();
 
+app.UseRouting();               // importante
+app.UseCors("AllowFrontend");   // deve vir depois do UseRouting
+app.UseAuthentication();        // obrigatório para JWT
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseMiddleware<PermissionMiddleware>(); // antes do MapControllers() se necessário
 
-app.UseMiddleware<PermissionMiddleware>();
+app.MapControllers();
 
 app.Run();

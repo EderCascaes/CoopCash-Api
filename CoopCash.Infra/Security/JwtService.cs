@@ -1,13 +1,14 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using CoopCash.App.Interfaces.Services;
 using CoopCash.Domain.Entities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace CoopCash.Infra.Security
 {
-    public class JwtService
+    public class JwtService: IJwtService
     {
         private readonly string _secret;
         private readonly string _issuer;

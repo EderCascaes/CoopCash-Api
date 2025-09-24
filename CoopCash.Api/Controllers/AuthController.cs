@@ -11,30 +11,59 @@ namespace CoopCash.Api.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly JwtService _jwtService;
+        private readonly IJwtService _jwtService;
 
-        public AuthController(JwtService jwtService, IUserService userService)
+        public AuthController(IJwtService jwtService, IUserService userService)
         {
             _jwtService = jwtService;
             _userService = userService;
         }
 
         [HttpPost("register")]
-        public IActionResult Register([FromBody] RegisterUserDto dto)
+        public async Task<ActionResult<SystemUser>> Register([FromBody] RegisterUserDto dto)
         {
-            _userService.RegisterAsync(dto);
-            return Ok(new { message = "Usuário registrado com sucesso!" });
+            var user = await _userService.RegisterAsync(dto);
+            return CreatedAtAction(nameof(GetById), new { id = user.Id }, user);
+        }
+
+
+        [HttpPost("validate-token")]
+        public async Task<ActionResult<SystemUser>> ValidateTokenRegister(string token)
+        {
+            var user = await _userService.ValidateTokenRegisterAsync(token);
+
+            return Ok(token);
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginDto dto)
+        public async Task<IActionResult> Login([FromBody] LoginDto dto)
         {
-            var user = "";//_userService.FirstOrDefault(u => u.Name == dto.Name && u.Password == dto.Password);
+            var user = await _userService.LoginAsync(dto);
             if (user == null)
-                return Unauthorized("Credenciais inválidas.");
+                return Unauthorized(new { message = "Usuário ou senha inválidos" });
 
-            var token = "";// _jwtService.GenerateToken(user);
-            return Ok(new { token });
+            // Gera o token JWT
+            var token = _jwtService.GenerateToken(user);
+
+            // Retorna token junto com informações do usuário
+            return Ok(new
+            {
+                message = "Login realizado com sucesso",
+                token = token,
+                user = user               
+            });
         }
+
+
+        [HttpGet("{id:guid}")]
+        public async Task<ActionResult<SystemUser>> GetById(Guid id)
+        {
+            var user = await _userService.GetByIdAsync(id);
+            if (user == null)
+                return NotFound();
+
+            return Ok(user);
+        }
+
     }
 }

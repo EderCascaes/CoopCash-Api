@@ -8,6 +8,7 @@ D:\Git\Repos_CoopCash\sistemas\Api\CoopCash\CoopCash.App\obj\Debug\net8.0\CoopCa
 D:\Git\Repos_CoopCash\sistemas\Api\CoopCash\CoopCash.App\obj\Debug\net8.0\CoopCash.App.AssemblyInfoInputs.cache
 D:\Git\Repos_CoopCash\sistemas\Api\CoopCash\CoopCash.App\obj\Debug\net8.0\CoopCash.App.AssemblyInfo.cs
 D:\Git\Repos_CoopCash\sistemas\Api\CoopCash\CoopCash.App\obj\Debug\net8.0\CoopCash.App.csproj.CoreCompileInputs.cache
+D:\Git\Repos_CoopCash\sistemas\Api\CoopCash\CoopCash.App\obj\Debug\net8.0\CoopCash.App.sourcelink.json
 D:\Git\Repos_CoopCash\sistemas\Api\CoopCash\CoopCash.App\obj\Debug\net8.0\CoopCash.8C5631EE.Up2Date
 D:\Git\Repos_CoopCash\sistemas\Api\CoopCash\CoopCash.App\obj\Debug\net8.0\CoopCash.App.dll
 D:\Git\Repos_CoopCash\sistemas\Api\CoopCash\CoopCash.App\obj\Debug\net8.0\refint\CoopCash.App.dll
